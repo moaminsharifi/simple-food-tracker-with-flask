@@ -1,0 +1,68 @@
+{% extends "components/base.html" %}
+
+{% block title %}
+Food Tracker | Day Details
+{% endblock title %}
+
+{% block content %}
+  {% include "components/nav.html" %}
+
+    <div class="container theme-showcase col-sm-6 col-sm-offset-3" role="main">
+
+      <div class="row">
+        <div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{pretty_date}}</h3>
+            </div>
+
+            <div class="panel-body">
+
+              <form method="POST" action="{{url_for('view',date = date)}}">
+                <div class="form-group">
+                  <select class="form-control" name="food_id">
+                    {% for food in food_results %}
+                    <option value="{{food.id}}">{{food.name}} - #{{food.id}}</option>
+                    {% endfor %}
+                    
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add</button>
+
+              </form>
+
+              <div class="page-header"></div>
+              {% for food in log_results %}
+              <ul class="nav nav-pills" role="tablist">
+                <li class="active"><a>{{food.name}}</a></li>
+                <li><a>Protein: <span class="badge">{{food.protein}}</span></a></li>
+                <li><a>Carbohydrates: <span class="badge">{{food.carbohydrates}}</span></a></li>
+                <li><a>Fat: <span class="badge">{{food.fat}}</span></a></li>
+                <li><a>Calories: <span class="badge">{{food.calories}}</span></a></li>
+              </ul>
+              <br>
+               
+              {% endfor %}
+              
+
+            </div>
+
+           
+            <hr>
+            <div class="panel-body">
+              <ul class="nav nav-pills" role="tablist">
+                <li class="active"><a>Total</a></li>
+                <li><a>Protein: <span class="badge">{{totals.protein}}</span></a></li>
+                <li><a>Carbohydrates: <span class="badge">{{totals.carbohydrates}}</span></a></li>
+                <li><a>Fat: <span class="badge">{{totals.fat}}</span></a></li>
+                <li><a>Calories: <span class="badge">{{totals.calories}}</span></a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+{% endblock content %}
