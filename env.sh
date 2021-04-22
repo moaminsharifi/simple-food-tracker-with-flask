@@ -1,0 +1,1 @@
+source flask/bin/activate.fish
