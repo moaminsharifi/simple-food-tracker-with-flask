@@ -1,5 +1,5 @@
 #DB 
-food_log.db
+food_*.db
 sql_command.sql
 #IDE 
 vscode
